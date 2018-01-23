@@ -12,11 +12,12 @@ namespace BlogApp.Controllers
     public class PostsController : Controller
     {
         private readonly MySqlDbContext _context;
+        private readonly MongoDBContext _mongoContext;
 
-        public PostsController(MySqlDbContext context)
+        public PostsController(MySqlDbContext context, MongoDBContext mongoContext)
         {
-            
             _context = context;
+            _mongoContext = mongoContext;
         }
 
         // GET: Post
