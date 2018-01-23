@@ -25,6 +25,11 @@ namespace BlogApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddDbContext<MySqlDbContext>(options =>
+            {
+                options.UseMySql(@"Server=localhost;database=blog;uid=root;pwd=password;");
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
