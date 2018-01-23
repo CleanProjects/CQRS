@@ -1,0 +1,10 @@
+/home/krzysiek/Projects/dotnet-core/BlogApp/bin/Debug/netcoreapp2.0/BlogApp.deps.json
+/home/krzysiek/Projects/dotnet-core/BlogApp/bin/Debug/netcoreapp2.0/BlogApp.runtimeconfig.json
+/home/krzysiek/Projects/dotnet-core/BlogApp/bin/Debug/netcoreapp2.0/BlogApp.runtimeconfig.dev.json
+/home/krzysiek/Projects/dotnet-core/BlogApp/bin/Debug/netcoreapp2.0/BlogApp.dll
+/home/krzysiek/Projects/dotnet-core/BlogApp/bin/Debug/netcoreapp2.0/BlogApp.pdb
+/home/krzysiek/Projects/dotnet-core/BlogApp/obj/Debug/netcoreapp2.0/BlogApp.csproj.CoreCompileInputs.cache
+/home/krzysiek/Projects/dotnet-core/BlogApp/obj/Debug/netcoreapp2.0/BlogApp.AssemblyInfoInputs.cache
+/home/krzysiek/Projects/dotnet-core/BlogApp/obj/Debug/netcoreapp2.0/BlogApp.AssemblyInfo.cs
+/home/krzysiek/Projects/dotnet-core/BlogApp/obj/Debug/netcoreapp2.0/BlogApp.dll
+/home/krzysiek/Projects/dotnet-core/BlogApp/obj/Debug/netcoreapp2.0/BlogApp.pdb
