@@ -1,6 +1,6 @@
 using System;
 
-namespace BlogApp.Models
+namespace BlogApp.Models.MySQL
 {
     public class ErrorViewModel
     {

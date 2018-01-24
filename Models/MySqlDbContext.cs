@@ -1,3 +1,4 @@
+using BlogApp.Models.MySQL;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlogApp.Models
@@ -5,7 +6,7 @@ namespace BlogApp.Models
     public class MySqlDbContext : DbContext
     {
 
-        public DbSet<BlogApp.Models.Post> Post { get; set; }
+        public DbSet<Post> Post { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

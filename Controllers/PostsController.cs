@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using BlogApp.Models;
+using BlogApp.Models.MySQL;
 using BlogApp.Actors;
 using BlogApp.Commands;
 using Akka.Actor;
+using BlogApp.Models;
 
 namespace BlogApp.Controllers
 {

@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Akka.Actor;
 using BlogApp.Models;
+using BlogApp.Models.MySQL;
 
 namespace BlogApp.Commands
 {
