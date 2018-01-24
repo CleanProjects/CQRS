@@ -17,6 +17,7 @@ namespace BlogApp.Commands
             {
                 Title = savePost.Title,
                 Content = savePost.Content,
+                WhenCreated = savePost.WhenCreated
             };
             
             using(var context = new MySqlDbContext())

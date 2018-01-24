@@ -12,7 +12,7 @@ namespace BlogApp.Commands
         {
             Title = title;
             Content = content;
-            WhenCreated = DateTime.UtcNow;
+            WhenCreated = DateTime.Now;
         }
     }
 }
