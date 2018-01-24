@@ -11,7 +11,7 @@ using System;
 namespace BlogApp.Migrations
 {
     [DbContext(typeof(MySqlDbContext))]
-    [Migration("20180123202920_InitialCreate")]
+    [Migration("20180124182024_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

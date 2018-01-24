@@ -7,8 +7,8 @@ namespace BlogApp.Actors
     {
         public CommandRootActor()
         {
-            var savePostCommandHandler = Context.ActorOf<SavePostHandler>();
-            Receive<SavePost>(message => savePostCommandHandler.Forward(message));
+            var savePostHandler = Context.ActorOf<SavePostHandler>();
+            Receive<SavePost>(message => savePostHandler.Forward(message));
         }
     }
 }

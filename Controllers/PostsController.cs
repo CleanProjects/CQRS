@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BlogApp.Models;
+using BlogApp.Actors;
+using BlogApp.Commands;
+using Akka.Actor;
 
 namespace BlogApp.Controllers
 {
@@ -13,11 +16,15 @@ namespace BlogApp.Controllers
     {
         private readonly MySqlDbContext _context;
         private readonly MongoDBContext _mongoContext;
+        private readonly IActorRefFactory _actorRefFactory;
 
-        public PostsController(MySqlDbContext context, MongoDBContext mongoContext)
+        public PostsController(
+            MySqlDbContext context, MongoDBContext mongoContext,
+            IActorRefFactory actorRefFactory)
         {
             _context = context;
             _mongoContext = mongoContext;
+            _actorRefFactory = actorRefFactory;
         }
 
         // GET: Post
@@ -50,25 +57,15 @@ namespace BlogApp.Controllers
             return View();
         }
 
-        // POST: Post/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,WhenCreated,Content")] Post post)
+        public async Task<IActionResult> Create([FromForm] Post post)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(post);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(post);
+            var commandRootActor = _actorRefFactory.ActorOf<CommandRootActor>();
+            var idCommandResult = await commandRootActor.Ask<CommandResult>(
+                new SavePost(post.Title, post.Content));
+
+            return RedirectToAction(nameof(Index));            
         }
 
-        private bool PostExists(int id)
-        {
-            return _context.Post.Any(e => e.Id == id);
-        }
     }
 }

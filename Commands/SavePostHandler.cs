@@ -26,7 +26,7 @@ namespace BlogApp.Commands
             }
 
             //Context.System.ActorSelection("*/EventRootActor").Tell(new PersonSaved(record.Id));
-            //Sender.Tell(new IdCommandResult(record.Id), Self);
+            Sender.Tell(new CommandResult(record.Id), Self);
         }
     }
 }
