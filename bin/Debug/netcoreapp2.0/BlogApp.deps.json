@@ -30,6 +30,7 @@
           "Microsoft.NETCore.App": "2.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.0.0",
           "MongoDB.Driver": "2.5.0",
+          "MongoDB.Driver.Core": "2.5.0",
           "Pomelo.EntityFrameworkCore.MySql": "2.0.1"
         },
         "runtime": {

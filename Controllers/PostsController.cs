@@ -10,13 +10,15 @@ using BlogApp.Actors;
 using BlogApp.Commands;
 using Akka.Actor;
 using BlogApp.Models;
+using BlogApp.Query;
+using BlogApp.Models.MongoDB;
+using MongoDB.Driver;
 
 namespace BlogApp.Controllers
 {
     public class PostsController : Controller
     {
         private readonly MySqlDbContext _context;
-        private readonly MongoDBContext _mongoContext;
         private readonly IActorRefFactory _actorRefFactory;
 
         public PostsController(
@@ -24,13 +26,15 @@ namespace BlogApp.Controllers
             IActorRefFactory actorRefFactory)
         {
             _context = context;
-            _mongoContext = mongoContext;
             _actorRefFactory = actorRefFactory;
         }
 
         // GET: Post
         public async Task<IActionResult> Index()
         {
+            var rootQueryActor = _actorRefFactory.ActorOf<QueryRootActor>();    
+            var posts = rootQueryActor.Ask<IAsyncCursor<PostList>>(new GetPostList());
+            Console.WriteLine(posts.Result);
             return View(await _context.Post.ToListAsync());
         }
 

@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using BlogApp.Models;
 using Akka.Actor;
+using MongoDB.Bson.Serialization;
+using BlogApp.Models.MongoDB;
 
 namespace BlogApp
 {
@@ -31,6 +33,8 @@ namespace BlogApp
             services.AddTransient<MongoDBContext>();
             // services.AddSingleton<ActorSystem>(_ => ActorSystem.Create("CQRS"));
             services.AddSingleton<IActorRefFactory>(actorSystem);
+            BsonClassMap.RegisterClassMap<PostDetails>();
+            BsonClassMap.RegisterClassMap<PostList>();
 
         }
 
