@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Akka.Actor;
@@ -20,23 +21,19 @@ namespace BlogApp.Query
         private async Task Handle(GetPostList query)
         {
             var dbContext = new MongoDBContext(); 
-            // var collection = dbContext._database.GetCollection<PostList>("bar");
-            // var c = dbContext.PostList;
             var result = await dbContext.PostList.FindAsync(x => true);
-
-            // var client = new MongoClient("mongodb://localhost:27017");
-            // var database = client.GetDatabase("foo");
-            // var collection = database.GetCollection<PostList>("bar");
-            // var result = await collection.FindAsync(x => true);
             
             Sender.Tell(result, Self);
         }
 
         private async Task Handle(GetPostDetails query)
         {
-            // MongoDBContext dbContext = new MongoDBContext(); 
-            // List<PostList> result = dbContext.PostList.Find(m => true).ToList();
-            // Sender.Tell(result, Self);
+            var dbContext = new MongoDBContext(); 
+            var result = await dbContext.PostDetails.FindAsync(
+                x => x.SqlId == query.Id
+            );
+
+            Sender.Tell(result.Single(), Self);
         }   
     }
 }

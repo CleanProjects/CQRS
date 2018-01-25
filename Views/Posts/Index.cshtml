@@ -1,4 +1,4 @@
-@model IEnumerable<BlogApp.Models.MySQL.Post>
+@model IEnumerable<BlogApp.Models.MongoDB.PostList>
 
 @{
     ViewData["Title"] = "Index";
@@ -19,7 +19,7 @@
                     @Html.DisplayNameFor(model => model.WhenCreated)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Content)
+                    @Html.DisplayNameFor(model => model.TruncatedContent)
                 </th>
         </tr>
     </thead>
@@ -27,7 +27,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                <a asp-action="Details" asp-route-id="@item.Id">
+                <a asp-action="Details" asp-route-id="@item.SqlId">
                     @Html.DisplayFor(modelItem => item.Title)
                 </a>
             </td>
@@ -35,7 +35,7 @@
                 @Html.DisplayFor(modelItem => item.WhenCreated)
             </td>
             <td>
-                @Html.Raw(item.Content.Replace(Environment.NewLine, "<br/>"))
+                @Html.DisplayFor(modelItem => item.TruncatedContent)
             </td>
         </tr>
 }

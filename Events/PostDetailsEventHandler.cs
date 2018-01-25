@@ -25,6 +25,7 @@ namespace BlogApp.Events
                 var detailsRecord = new PostDetails
                 {
                     Title = post.Title,
+                    SqlId = post.Id,
                     Content = post.Content,
                     WhenCreated = post.WhenCreated
                 };

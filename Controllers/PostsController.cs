@@ -36,26 +36,21 @@ namespace BlogApp.Controllers
         {
             var rootQueryActor = _actorRefFactory.ActorOf<QueryRootActor>();
             var posts = rootQueryActor.Ask<IAsyncCursor<PostList>>(new GetPostList());
-            Console.WriteLine(posts.Result);
-            return View(await _context.Post.ToListAsync());
+
+            return View(posts.Result.ToEnumerable());
         }
 
         // GET: Post/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var post = await _context.Post
-                .SingleOrDefaultAsync(m => m.Id == id);
-            if (post == null)
-            {
-                return NotFound();
-            }
-
-            return View(post);
+            var rootQueryActor = _actorRefFactory.ActorOf<QueryRootActor>();
+            var post = rootQueryActor.Ask<PostDetails>(new GetPostDetails(id));
+            return View(post.Result);
         }
 
         // GET: Post/Create

@@ -27,6 +27,7 @@ namespace BlogApp.Events
                 var listRecord = new PostList
                 {
                     Title = post.Title,
+                    SqlId = post.Id,
                     TruncatedContent = post.Content.Substring(0, 10),
                     WhenCreated = post.WhenCreated
                 };
