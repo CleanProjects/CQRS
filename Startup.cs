@@ -31,10 +31,8 @@ namespace BlogApp
     
             services.AddMvc();
             services.AddSingleton<IConfiguration>(Configuration);  
-            services.AddDbContext<MySqlDbContext>();
-            services.AddTransient<MongoDBContext>();
-            // services.AddSingleton<ActorSystem>(_ => ActorSystem.Create("CQRS"));
             services.AddSingleton<IActorRefFactory>(actorSystem);
+
             var eventRootActor = actorSystem.ActorOf<EventRootActor>("EventRootActor"); 
             services.AddSingleton<IActorRef>(eventRootActor);
 

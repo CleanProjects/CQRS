@@ -21,20 +21,32 @@ namespace BlogApp.Events
             using (var context = new MySqlDbContext())
             {
 
-                var post = await context.Post.SingleOrDefaultAsync(m => m.Id == @event.Id);
+                var post = await context.Post.SingleOrDefaultAsync(
+                    m => m.Id == @event.Id);
 
-                // TODO: what if len of Content is less than 10 chars?
                 var listRecord = new PostList
                 {
                     Title = post.Title,
                     SqlId = post.Id,
-                    TruncatedContent = post.Content.Substring(0, 10),
+                    TruncatedContent = Truncate(post.Content),
                     WhenCreated = post.WhenCreated
                 };
                 
                 var dbContext = new MongoDBContext();
                 await dbContext.PostList.InsertOneAsync(listRecord);
 
+            }
+        }
+
+        private string Truncate(string content) {
+            if (content.Length <= 50)
+            {
+                return $"{content} ...";
+            } 
+            else 
+            {
+                var truncated = content.Substring(0, 50);
+                return $"{truncated} ...";
             }
         }
     }

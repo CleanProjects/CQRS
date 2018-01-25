@@ -18,20 +18,16 @@ namespace BlogApp.Controllers
 {
     public class PostsController : Controller
     {
-        private readonly MySqlDbContext _context;
         private readonly IActorRefFactory _actorRefFactory;
         private readonly IActorRef _eventRootActor;
 
         public PostsController(
-            MySqlDbContext context, MongoDBContext mongoContext,
             IActorRefFactory actorRefFactory, IActorRef eventRootActor)
         {
-            _context = context;
             _actorRefFactory = actorRefFactory;
             _eventRootActor = eventRootActor;
         }
 
-        // GET: Post
         public async Task<IActionResult> Index()
         {
             var rootQueryActor = _actorRefFactory.ActorOf<QueryRootActor>();
@@ -40,20 +36,14 @@ namespace BlogApp.Controllers
             return View(posts.Result.ToEnumerable());
         }
 
-        // GET: Post/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
             var rootQueryActor = _actorRefFactory.ActorOf<QueryRootActor>();
             var post = rootQueryActor.Ask<PostDetails>(new GetPostDetails(id));
+
             return View(post.Result);
         }
 
-        // GET: Post/Create
         public IActionResult Create()
         {
             return View();

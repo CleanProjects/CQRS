@@ -28,6 +28,7 @@ namespace BlogApp.Commands
                 await context.Post.AddAsync(record);
                 await context.SaveChangesAsync();
             }
+
             Context.System.ActorSelection("*/EventRootActor").Tell(new PostSaved(record.Id));
             Sender.Tell(new CommandResult(record.Id), Self);
         }

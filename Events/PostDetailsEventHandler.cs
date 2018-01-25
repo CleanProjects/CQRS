@@ -20,7 +20,8 @@ namespace BlogApp.Events
             using (var context = new MySqlDbContext())
             {
 
-                var post = await context.Post.SingleOrDefaultAsync(m => m.Id == @event.Id);
+                var post = await context.Post.SingleOrDefaultAsync(
+                    m => m.Id == @event.Id);
 
                 var detailsRecord = new PostDetails
                 {
