@@ -14,7 +14,7 @@ namespace BlogApp.Models
         { 
             try 
             { 
-                var mongoClient = new MongoClient("mongodb://172.17.0.3:27017"); 
+                var mongoClient = new MongoClient("mongodb://localhost:27017"); 
                 _database = mongoClient.GetDatabase("Blog"); 
             } 
             catch (Exception ex) 

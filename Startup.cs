@@ -50,7 +50,7 @@ namespace BlogApp
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Posts/Error");
             }
 
             app.UseStaticFiles();

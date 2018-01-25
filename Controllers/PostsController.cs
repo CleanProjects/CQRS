@@ -13,6 +13,7 @@ using BlogApp.Models;
 using BlogApp.Query;
 using BlogApp.Models.MongoDB;
 using MongoDB.Driver;
+using System.Diagnostics;
 
 namespace BlogApp.Controllers
 {
@@ -58,6 +59,16 @@ namespace BlogApp.Controllers
 
             return RedirectToAction(nameof(Index));            
         }
+
+       public IActionResult Error()
+        {
+            return View(new ErrorViewModel 
+            { 
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier 
+            }
+            );
+        }
+
 
     }
 }
