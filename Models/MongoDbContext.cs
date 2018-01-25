@@ -29,5 +29,12 @@ namespace BlogApp.Models
                 return _database.GetCollection<PostList>("PostList"); 
             } 
         } 
+         public IMongoCollection<PostDetails> PostDetails
+        { 
+            get 
+            { 
+                return _database.GetCollection<PostDetails>("PostDetails"); 
+            } 
+        } 
     } 
 }

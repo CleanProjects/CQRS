@@ -1,5 +1,7 @@
+using System;
 using System.Threading.Tasks;
 using Akka.Actor;
+using BlogApp.Events;
 using BlogApp.Models;
 using BlogApp.Models.MySQL;
 
@@ -26,8 +28,8 @@ namespace BlogApp.Commands
                 await context.Post.AddAsync(record);
                 await context.SaveChangesAsync();
             }
-
-            //Context.System.ActorSelection("*/EventRootActor").Tell(new PersonSaved(record.Id));
+            Console.WriteLine("SavePostHandler");
+            Context.System.ActorSelection("*/EventRootActor").Tell(new PostSaved(record.Id));
             Sender.Tell(new CommandResult(record.Id), Self);
         }
     }

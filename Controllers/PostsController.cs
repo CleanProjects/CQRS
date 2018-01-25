@@ -20,19 +20,21 @@ namespace BlogApp.Controllers
     {
         private readonly MySqlDbContext _context;
         private readonly IActorRefFactory _actorRefFactory;
+        private readonly IActorRef _eventRootActor;
 
         public PostsController(
             MySqlDbContext context, MongoDBContext mongoContext,
-            IActorRefFactory actorRefFactory)
+            IActorRefFactory actorRefFactory, IActorRef eventRootActor)
         {
             _context = context;
             _actorRefFactory = actorRefFactory;
+            _eventRootActor = eventRootActor;
         }
 
         // GET: Post
         public async Task<IActionResult> Index()
         {
-            var rootQueryActor = _actorRefFactory.ActorOf<QueryRootActor>();    
+            var rootQueryActor = _actorRefFactory.ActorOf<QueryRootActor>();
             var posts = rootQueryActor.Ask<IAsyncCursor<PostList>>(new GetPostList());
             Console.WriteLine(posts.Result);
             return View(await _context.Post.ToListAsync());
