@@ -31,7 +31,7 @@ namespace BlogApp.Controllers
 
         public void LogoutUser()
         {
-            HttpContext.Session.SetString("auth", null);
+            HttpContext.Session.Clear();
         }
 
         public bool CredentialsValid(string user, string password)

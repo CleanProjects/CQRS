@@ -26,15 +26,23 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">BlogApp</a>
+                <a asp-area="" asp-controller="Posts" asp-action="Index" class="navbar-brand">BlogApp</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li><a asp-area="" asp-controller="Posts" asp-action="Index">Home</a></li>
+                    @{
+                        if (ViewBag.IsLoggedIn) 
+                        {
+                            <li><a asp-area="" asp-controller="Posts" asp-action="Create">Create new</a></li>
+                            <li><a asp-area="" asp-controller="Logout" asp-action="Index">Logout</a></li>
+                        }
+                        else
+                        {
+                            <li><a asp-area="" asp-controller="Login" asp-action="Index">Login</a></li>
+                        }
+                    }
                     
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Logged in  - @ViewBag.IsLoggedIn</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                 </ul>
             </div>
         </div>

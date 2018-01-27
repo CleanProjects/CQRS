@@ -9,6 +9,7 @@ namespace BlogApp.Controllers
     {
         public IActionResult Index()
         {
+            ViewBag.IsLoggedIn = IsLoggedIn;
             return View();
         }
 
@@ -21,8 +22,7 @@ namespace BlogApp.Controllers
                 return RedirectToAction("Index", "Posts"); 
             }
 
-            // cos poszlo nie teges, wiec wyswietl wiadomosc
-            return View();
+            return RedirectToAction("Index", "Login"); 
         }
     }
 }
