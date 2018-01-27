@@ -21,8 +21,13 @@ namespace BlogApp.Query
         private async Task Handle(GetPostList query)
         {
             var dbContext = new MongoDBContext(); 
-            var result = await dbContext.PostList.FindAsync(x => true);
-            
+            var sort = Builders<PostList>.Sort.Descending("WhenCreated");
+            var options = new FindOptions<PostList>
+            {
+                Sort = sort
+            };
+
+            var result = await dbContext.PostList.FindAsync(x => true, options);
             Sender.Tell(result, Self);
         }
 

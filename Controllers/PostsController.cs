@@ -50,8 +50,6 @@ namespace BlogApp.Controllers
 
         public IActionResult Create()
         {
-            var user = HttpContext.Session.GetString("user");
-            var password = HttpContext.Session.GetString("password");
             ViewBag.IsLoggedIn = IsLoggedIn;
 
             if (IsLoggedIn)
@@ -74,16 +72,6 @@ namespace BlogApp.Controllers
 
             return RedirectToAction(nameof(Index)); 
         }
-
-       public IActionResult Error()
-        {
-            return View(new ErrorViewModel 
-            { 
-                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier 
-            }
-            );
-        }
-
 
     }
 }

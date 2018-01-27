@@ -4,40 +4,17 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h4></h4>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.WhenCreated)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TruncatedContent)
-                </th>
-        </tr>
-    </thead>
-    <tbody>
 @foreach (var item in Model) {
-        <tr>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.SqlId">
-                    @Html.DisplayFor(modelItem => item.Title)
-                </a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WhenCreated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TruncatedContent)
-            </td>
-        </tr>
+    <div>
+        <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+        <p><em>@Html.DisplayFor(modelItem => item.WhenCreated)</em></p>
+        <p>
+            @Html.DisplayFor(modelItem => item.TruncatedContent)
+            <br>
+            <a asp-action="Details" asp-route-id="@item.SqlId">Read more</a>
+        </p>
+    </div>
 }
-    </tbody>
-</table>
+

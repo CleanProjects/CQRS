@@ -39,13 +39,13 @@ namespace BlogApp.Events
         }
 
         private string Truncate(string content) {
-            if (content.Length <= 50)
+            if (content.Length <= 120)
             {
                 return $"{content} ...";
             } 
             else 
             {
-                var truncated = content.Substring(0, 50);
+                var truncated = content.Substring(0, 120);
                 return $"{truncated} ...";
             }
         }
