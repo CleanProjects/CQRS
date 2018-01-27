@@ -14,10 +14,11 @@ using BlogApp.Query;
 using BlogApp.Models.MongoDB;
 using MongoDB.Driver;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Http;
 
 namespace BlogApp.Controllers
 {
-    public class PostsController : Controller
+    public class PostsController : BaseController
     {
         private readonly IActorRefFactory _actorRefFactory;
         private readonly IActorRef _eventRootActor;
@@ -29,35 +30,49 @@ namespace BlogApp.Controllers
             _eventRootActor = eventRootActor;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             var rootQueryActor = _actorRefFactory.ActorOf<QueryRootActor>();
             var posts = rootQueryActor.Ask<IAsyncCursor<PostList>>(new GetPostList());
+            ViewBag.IsLoggedIn = IsLoggedIn;
 
             return View(posts.Result.ToEnumerable());
         }
 
-        public async Task<IActionResult> Details(int id)
+        public IActionResult Details(int id)
         {
             var rootQueryActor = _actorRefFactory.ActorOf<QueryRootActor>();
             var post = rootQueryActor.Ask<PostDetails>(new GetPostDetails(id));
+            ViewBag.IsLoggedIn = IsLoggedIn;
 
             return View(post.Result);
         }
 
         public IActionResult Create()
         {
-            return View();
+            var user = HttpContext.Session.GetString("user");
+            var password = HttpContext.Session.GetString("password");
+            ViewBag.IsLoggedIn = IsLoggedIn;
+
+            if (IsLoggedIn)
+            {
+                return View();
+            }
+
+            return RedirectToAction(nameof(Index)); 
         }
 
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] Post post)
         {
-            var commandRootActor = _actorRefFactory.ActorOf<CommandRootActor>();
-            var idCommandResult = await commandRootActor.Ask<CommandResult>(
-                new SavePost(post.Title, post.Content));
+            if (IsLoggedIn) 
+            {
+                var commandRootActor = _actorRefFactory.ActorOf<CommandRootActor>();
+                var idCommandResult = await commandRootActor.Ask<CommandResult>(
+                    new SavePost(post.Title, post.Content)); 
+            }
 
-            return RedirectToAction(nameof(Index));            
+            return RedirectToAction(nameof(Index)); 
         }
 
        public IActionResult Error()

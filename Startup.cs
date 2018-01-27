@@ -30,6 +30,8 @@ namespace BlogApp
             var actorSystem = ActorSystem.Create("CQRS");
     
             services.AddMvc();
+
+            services.AddSession();
             services.AddSingleton<IConfiguration>(Configuration);  
             services.AddSingleton<IActorRefFactory>(actorSystem);
 
@@ -54,6 +56,7 @@ namespace BlogApp
             }
 
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseMvc(routes =>
             {
