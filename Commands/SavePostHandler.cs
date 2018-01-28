@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Akka.Actor;
 using BlogApp.Events;
 using BlogApp.Models;
-using BlogApp.Models.MySQL;
+using BlogApp.Models.Write;
 
 namespace BlogApp.Commands
 {

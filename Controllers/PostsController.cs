@@ -1,12 +1,12 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using BlogApp.Models.MySQL;
+using BlogApp.Models.Write;
 using BlogApp.Actors;
 using BlogApp.Commands;
 using Akka.Actor;
 using BlogApp.Query;
-using BlogApp.Models.MongoDB;
+using BlogApp.Models.Read;
 using MongoDB.Driver;
 
 namespace BlogApp.Controllers

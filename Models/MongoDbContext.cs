@@ -1,5 +1,5 @@
 using System;
-using BlogApp.Models.MongoDB;
+using BlogApp.Models.Read;
 using MongoDB.Driver;
 
 namespace BlogApp.Models

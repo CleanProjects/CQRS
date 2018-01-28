@@ -1,4 +1,4 @@
-using BlogApp.Models.MySQL;
+using BlogApp.Models.Write;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlogApp.Models

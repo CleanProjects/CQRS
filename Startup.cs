@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using BlogApp.Models;
 using Akka.Actor;
 using MongoDB.Bson.Serialization;
-using BlogApp.Models.MongoDB;
+using BlogApp.Models.Read;
 using BlogApp.Actors;
 
 namespace BlogApp

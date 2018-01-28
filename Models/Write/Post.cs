@@ -2,7 +2,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace BlogApp.Models.MySQL
+namespace BlogApp.Models.Write
 {
     public class Post
     {

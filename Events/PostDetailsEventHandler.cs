@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Akka.Actor;
 using BlogApp.Models;
-using BlogApp.Models.MongoDB;
+using BlogApp.Models.Read;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
 

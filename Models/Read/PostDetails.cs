@@ -1,7 +1,7 @@
 using System;
 using MongoDB.Bson;
 
-namespace BlogApp.Models.MongoDB
+namespace BlogApp.Models.Read
 {
     public class PostDetails
     {

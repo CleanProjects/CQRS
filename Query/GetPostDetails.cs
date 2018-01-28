@@ -1,4 +1,4 @@
-using BlogApp.Models.MongoDB;
+using BlogApp.Models.Read;
 
 namespace BlogApp.Query
 {
