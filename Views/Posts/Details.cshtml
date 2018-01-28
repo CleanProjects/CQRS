@@ -5,7 +5,7 @@
 }
 
 <div>
-    <h3>@Html.DisplayFor(model => model.Title)</h3>
+    <h2>@Html.DisplayFor(model => model.Title)</h2>
     <p><em>@Html.DisplayFor(model => model.WhenCreated)</em></p>
-    <p>@Html.DisplayFor(model => model.Content)</p>
+    <p>@Html.Raw(Model.Content)</p>
 </div>

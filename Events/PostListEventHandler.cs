@@ -1,9 +1,7 @@
-using System;
 using System.Threading.Tasks;
 using Akka.Actor;
 using BlogApp.Models;
 using BlogApp.Models.MongoDB;
-using BlogApp.Models.MySQL;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
 
@@ -38,15 +36,17 @@ namespace BlogApp.Events
             }
         }
 
-        private string Truncate(string content) {
-            if (content.Length <= 120)
+        private string Truncate(string content)
+        {
+            var maxLength = 120;
+            if (content.Length <= maxLength)
             {
-                return $"{content} ...";
+                return $"{content}...";
             } 
             else 
             {
-                var truncated = content.Substring(0, 120);
-                return $"{truncated} ...";
+                var truncated = content.Substring(0, maxLength);
+                return $"{truncated}...";
             }
         }
     }

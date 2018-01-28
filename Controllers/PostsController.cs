@@ -1,20 +1,13 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using BlogApp.Models.MySQL;
 using BlogApp.Actors;
 using BlogApp.Commands;
 using Akka.Actor;
-using BlogApp.Models;
 using BlogApp.Query;
 using BlogApp.Models.MongoDB;
 using MongoDB.Driver;
-using System.Diagnostics;
-using Microsoft.AspNetCore.Http;
 
 namespace BlogApp.Controllers
 {

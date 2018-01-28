@@ -1,6 +1,5 @@
 using System;
 using BlogApp.Models.MongoDB;
-using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 
 namespace BlogApp.Models

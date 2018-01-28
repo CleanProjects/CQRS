@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Akka.Actor;
 using BlogApp.Models;
 using BlogApp.Models.MongoDB;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 
 namespace BlogApp.Query

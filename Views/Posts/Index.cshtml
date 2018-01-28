@@ -11,7 +11,7 @@
         <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
         <p><em>@Html.DisplayFor(modelItem => item.WhenCreated)</em></p>
         <p>
-            @Html.DisplayFor(modelItem => item.TruncatedContent)
+            @Html.Raw(item.TruncatedContent.Replace(Environment.NewLine, "<br/>"))
             <br>
             <a asp-action="Details" asp-route-id="@item.SqlId">Read more</a>
         </p>

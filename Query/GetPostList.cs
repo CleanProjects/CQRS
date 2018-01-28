@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using BlogApp.Models.MongoDB;
 using MongoDB.Driver;
 
