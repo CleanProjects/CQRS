@@ -7,5 +7,5 @@
 <div>
     <h2>@Html.DisplayFor(model => model.Title)</h2>
     <p><em>@Html.DisplayFor(model => model.WhenCreated)</em></p>
-    <p>@Html.Raw(Model.Content)</p>
+    <p>@Html.Raw(Model.Content.Replace(Environment.NewLine, "<br/>"))</p>
 </div>

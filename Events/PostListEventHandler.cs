@@ -20,7 +20,7 @@ namespace BlogApp.Events
             {
 
                 var post = await context.Post.SingleOrDefaultAsync(
-                    m => m.Id == @event.Id);
+                    p => p.Id == @event.Id);
 
                 var listRecord = new PostList
                 {

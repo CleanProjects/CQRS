@@ -28,15 +28,13 @@ namespace BlogApp
         public void ConfigureServices(IServiceCollection services)
         {
             var actorSystem = ActorSystem.Create("CQRS");
-    
-            services.AddMvc();
+            var eventRootActor = actorSystem.ActorOf<EventRootActor>("EventRootActor");
 
+            services.AddMvc();
             services.AddSession();
+
             services.AddSingleton<IConfiguration>(Configuration);  
             services.AddSingleton<IActorRefFactory>(actorSystem);
-
-            var eventRootActor = actorSystem.ActorOf<EventRootActor>("EventRootActor"); 
-            services.AddSingleton<IActorRef>(eventRootActor);
 
             BsonClassMap.RegisterClassMap<PostDetails>();
             BsonClassMap.RegisterClassMap<PostList>();

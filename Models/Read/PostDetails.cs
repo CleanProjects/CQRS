@@ -11,9 +11,5 @@ namespace BlogApp.Models.Read
         public string Content { get; set; }
         public DateTime WhenCreated { get; set; }
 
-        public PostDetails()
-        {
-            
-        }
     }
 }

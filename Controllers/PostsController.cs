@@ -14,13 +14,10 @@ namespace BlogApp.Controllers
     public class PostsController : BaseController
     {
         private readonly IActorRefFactory _actorRefFactory;
-        private readonly IActorRef _eventRootActor;
 
-        public PostsController(
-            IActorRefFactory actorRefFactory, IActorRef eventRootActor)
+        public PostsController(IActorRefFactory actorRefFactory)
         {
             _actorRefFactory = actorRefFactory;
-            _eventRootActor = eventRootActor;
         }
 
         public IActionResult Index()

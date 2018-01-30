@@ -23,7 +23,7 @@ namespace BlogApp.Query
                 Sort = sort
             };
 
-            var result = await dbContext.PostList.FindAsync(x => true, options);
+            var result = await dbContext.PostList.FindAsync(post => true, options);
             Sender.Tell(result, Self);
         }
 
@@ -31,7 +31,7 @@ namespace BlogApp.Query
         {
             var dbContext = new MongoDBContext(); 
             var result = await dbContext.PostDetails.FindAsync(
-                x => x.SqlId == query.Id
+                post => post.SqlId == query.Id
             );
 
             Sender.Tell(result.Single(), Self);
